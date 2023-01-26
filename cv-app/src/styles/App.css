@@ -1,3 +1,20 @@
+* {
+    margin: 3px;
+}
+
 .App {
-    text-align: center;
+    text-align: left;
+
+}
+
+.cvForm, .formDiv {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 50%;
+}
+
+input {
+    margin: 2px;
+    font-size: large;
 }
