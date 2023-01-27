@@ -4,6 +4,8 @@ import { Education } from './components/Education';
 import { ProfessionalExp } from './components/ProfessionalExp';
 import { Skills } from './components/Skills';
 import "./styles/App.css";
+import uniqid from 'uniqid';
+
 /* Basic Structure for reference
 1. Personal info
 	Name
@@ -49,17 +51,38 @@ class App extends Component {
     super();
 
     this.state = {
-        addSkill: [<Skills input={this.handleChange}/>],
-        skillInput: []
+        addSkill: [<Skills input={this.handleChange} id={uniqid()}/>],
+        skill: {
+          input:"",
+        },
+        skills: [],
     }
   }
 
   handleChange = (e) => {
     e.preventDefault();
-    this.setState({ 
-        skillInput: this.state.skillInput.concat(e.target.value)
+    this.state.skills.map(item => {
+      if(item.id === e.target.id) {
+        let index = this.state.skills.indexOf(item)
+        let temp = this.state.skills
+        temp[index].input = e.target.value
+        
+        this.setState( {
+          skills: temp
+        })
+        
+      } else
+      this.setState({ 
+        skill: {
+          input: e.target.value,
+          id: e.target.id
+        },
+        skills: this.state.skills.concat(this.state.skill)
     })
-    console.log(this.state.skillInput)
+    })
+
+    
+
   }
 
   onFormSubmit = (e) => {
@@ -70,8 +93,13 @@ class App extends Component {
     e.preventDefault();
     this.setState({ 
         addSkill: this.state.addSkill.concat(value),
+        skill: {
+          input:"",
+          id: e.target.id
+        },
+        skills: this.state.skills.concat(this.state.skill)
     })
-    
+
 
   }
 
@@ -131,8 +159,8 @@ class App extends Component {
         <label>Skills</label>
          {/* {this.skills} */}
          {addSkill}
-         <button className="add" onClick={(e) => this.addButton(<Skills input={this.handleChange}/>, e)}>Add</button>
-          
+         <button className="add" onClick={(e) => this.addButton(<Skills input={this.handleChange} id={uniqid()}/>, e)}>Add</button>
+         {console.log(this.state.skills)}
           
           
         </form>
@@ -143,3 +171,4 @@ class App extends Component {
 }
 
 export default App;
+ 
