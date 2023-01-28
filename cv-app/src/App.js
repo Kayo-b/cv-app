@@ -6,82 +6,112 @@ import { Skills } from './components/Skills';
 import "./styles/App.css";
 import uniqid from 'uniqid';
 
-/* Basic Structure for reference
-1. Personal info
-	Name
-	Date of Birth
-	Country/City where you reside
-  1.1 Contact Info
-    E-mail
-    Telefone
-    Social Media
-    [ADD option]
-    Github
-	
-----
-
-2. Education
-	Basic Education
-		Institution where you graduated
-		Start / Finishing Dates
-	Higher Education
-		Institution
-		Start / Finishing Dates
-		[ADD Option]
-	Certificates
-		[input field for links or uploads]
-		[ADD Option]
-
-----
-
-3. Professional
-	Company Name
-	Job-Title
-	Activities(Optional)
-	From - To Dates // Currently Employed Here Checkbox
-	[ADD Option]
-	
-
-----
-*/
 
 class App extends Component {
   constructor() {
 
     super();
-
+    this.firstId = {id: uniqid()}
     this.state = {
-        addSkill: [<Skills input={this.handleChange} id={uniqid()}/>],
+
+        addSkill: [<Skills input={this.handleChange} id={this.firstId.id}/>],
         skill: {
           input:"",
+          id:  this.firstId.id
         },
-        skills: [],
+        skillsArr: [],
+
+        addProf:[<ProfessionalExp id={this.firstId.id}/>],
+        profExp: {
+          id: this.firstId.id,
+          title:"",
+          company:"",
+          from: null,
+          to: null,
+          description:""
+        },
+        profExpArr: []
+        
     }
   }
 
   handleChange = (e) => {
-    e.preventDefault();
-    this.state.skills.map(item => {
-      if(item.id === e.target.id) {
-        let index = this.state.skills.indexOf(item)
-        let temp = this.state.skills
-        temp[index].input = e.target.value
-        
-        this.setState( {
-          skills: temp
+    // e.preventDefault();
+    let checkForId = () => {
+      var ret = false
+
+      switch(e.target.className) {
+
+        case "input":
+
+      this.state.skillsArr.map(item => {
+        if(item.id === e.target.id) {
+          let index = this.state.skillsArr.indexOf(item);
+          let temp = this.state.skillsArr;
+          temp[index].input = e.target.value;
+          this.setState( {
+            skillsArr: temp
+          })
+          ret = true
+        } 
+      })
+      if(ret === false) {
+        console.log(e.target.value)
+        this.setState({ 
+          skill: {
+            input: e.target.value,
+            id: e.target.id
+          },
+          
+          skillsArr: this.state.skillsArr.concat({
+            input: e.target.value,
+            id: e.target.id 
+          })
+      })
+      console.log(this.state.skill.input)
+      }
+      break;
+
+      case "profExp":
+        this.state.profExpArr.map(item => {
+          if(item.id === e.target.id) {
+            let tempTitle = e.target.name
+            console.log(e.target.name)
+            // let index = this.state.profExpArr.indexOf(item);
+            // let temp = this.state.profExpArr;
+            // temp[index].input = e.target.value;
+            // this.setState( {
+            //   profExpArr: temp
+            // })
+            ret = true
+          } 
         })
         
-      } else
-      this.setState({ 
-        skill: {
-          input: e.target.value,
-          id: e.target.id
-        },
-        skills: this.state.skills.concat(this.state.skill)
-    })
-    })
+        if(ret === false) {
 
-    
+          this.setState({
+
+            profExp: {
+              tempName: e.target.value,
+              id: e.target.id
+            },
+            
+            profExpArr: this.state.profExpArr.concat({
+              company: e.target.value,
+              id: e.target.id 
+            })
+        })
+        console.log(this.state.profExpArr.company)
+        }
+        break;
+
+        default:
+          console.log("default")
+      }
+
+      
+    }
+    checkForId();
 
   }
 
@@ -89,16 +119,39 @@ class App extends Component {
 
   }
 
-  addButton = (value,e) => {
+  addButton = (tag, value,e) => {
     e.preventDefault();
-    this.setState({ 
-        addSkill: this.state.addSkill.concat(value),
-        skill: {
-          input:"",
-          id: e.target.id
-        },
-        skills: this.state.skills.concat(this.state.skill)
-    })
+
+    switch(tag) {
+
+      case "addSkills":
+
+        this.setState({ 
+          addSkill: this.state.addSkill.concat(value),
+          skill: {
+            input:"",
+            id: value.props.id
+          },
+          skillsArr: this.state.skillsArr.concat({
+            input:"",
+            id: value.props.id
+          })
+      });
+      break;
+
+      case "addProf":
+
+        this.setState({ 
+          addProf: this.state.addProf.concat(value)
+        })
+
+        break;
+      
+      default:
+        console.log("default")
+
+    }
+    
 
 
   }
@@ -123,18 +176,18 @@ class App extends Component {
           <p></p>
   </div>
 
-  professionalExp =           <div>
-    <input type="text" placeholder="Company's Name"></input>
-    <input type="text" placeholder='Title'></input>
-    <input type="number" placeholder='From'></input>
-    <input type="number" placeholder='To'></input>
-    <input type="text" placeholder='Duties'></input> </div>
+  // professionalExp =           <div>
+  //   <input type="text" placeholder="Company's Name"></input>
+  //   <input type="text" placeholder='Title'></input>
+  //   <input type="number" placeholder='From'></input>
+  //   <input type="number" placeholder='To'></input>
+  //   <input type="text" placeholder='Duties'></input> </div>
 
-  professionalExpContainer = <div className="formDiv">
-          {this.professionalExp}
-          <button>Add</button>
-          <p></p>
-  </div>
+  // professionalExpContainer = <div className="formDiv">
+  //         {this.professionalExp}
+  //         <button>Add</button>
+  //         <p></p>
+  // </div>
   
     
 
@@ -146,7 +199,7 @@ class App extends Component {
 // skills = [<Skills />]
 
   render() {
-    const { addSkill, skillInput } = this.state
+    const { addSkill, addProf } = this.state
     return (
       <div className="App">
         <form className="cvForm">
@@ -155,12 +208,13 @@ class App extends Component {
         <label>Education</label>
           {this.education}
         <label>Professional Experience</label>
-          {this.professionalExpContainer} 
+          {addProf}
+          <button className="addProf" onClick={(e) => this.addButton("addProf",<ProfessionalExp input={this.handleChange} id={uniqid()}/>, e)}>Add</button>
+          {console.log(this.state.profExpArr)}
         <label>Skills</label>
-         {/* {this.skills} */}
          {addSkill}
-         <button className="add" onClick={(e) => this.addButton(<Skills input={this.handleChange} id={uniqid()}/>, e)}>Add</button>
-         {console.log(this.state.skills)}
+         <button className="addSkills" onClick={(e) => this.addButton("addSkills", <Skills input={this.handleChange} id={uniqid()}/>, e)}>Add</button>
+         {console.log(this.state.skillsArr)}
           
           
         </form>
