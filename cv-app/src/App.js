@@ -5,6 +5,7 @@ import { ProfessionalExp } from './components/ProfessionalExp';
 import { Skills } from './components/Skills';
 import "./styles/App.css";
 import uniqid from 'uniqid';
+import { useState } from 'react';
 
 
 class App extends Component {
@@ -21,11 +22,11 @@ class App extends Component {
         },
         skillsArr: [],
 
-        addProf:[<ProfessionalExp id={this.firstId.id}/>],
+        addProf:[<ProfessionalExp input={this.handleChange} id={this.firstId.id}/>],
         profExp: {
           id: this.firstId.id,
-          title:"",
           company:"",
+          title:"",
           from: null,
           to: null,
           description:""
@@ -37,12 +38,12 @@ class App extends Component {
 
   handleChange = (e) => {
     // e.preventDefault();
-    let checkForId = () => {
+    let CheckForId = () => {
       var ret = false
 
       switch(e.target.className) {
 
-        case "input":
+      case "input":
 
       this.state.skillsArr.map(item => {
         if(item.id === e.target.id) {
@@ -73,47 +74,68 @@ class App extends Component {
       break;
 
       case "profExp":
+
         this.state.profExpArr.map(item => {
           if(item.id === e.target.id) {
-            let tempTitle = e.target.name
-            console.log(e.target.name)
-            // let index = this.state.profExpArr.indexOf(item);
-            // let temp = this.state.profExpArr;
-            // temp[index].input = e.target.value;
-            // this.setState( {
-            //   profExpArr: temp
-            // })
+            
+            let index = this.state.profExpArr.indexOf(item)
+            let temp = this.state.profExpArr[index]
+            temp[e.target.name] = e.target.value
+            let substituteArr = this.state.profExpArr
+            substituteArr.splice(index, 1, temp)
+            
+            this.setState( {
+              profExp: temp,
+              profExpArr: substituteArr
+          })
+         
             ret = true
           } 
         })
         
         if(ret === false) {
-
-          this.setState({
-
-            profExp: {
-              tempName: e.target.value,
-              id: e.target.id
-            },
+          const { name, value } = e.target
+            this.setState( {
             
-            profExpArr: this.state.profExpArr.concat({
-              company: e.target.value,
-              id: e.target.id 
-            })
-        })
-        console.log(this.state.profExpArr.company)
-        }
+              profExp: {
+                id: e.target.id,
+                company:"",
+                title:"",
+                from: null,
+                to: null,
+                description:"",
+                [name]: value
+              },
+
+              profExpArr: this.state.profExpArr.concat( {
+                
+                id: e.target.id,
+                company:"",
+                title:"",
+                from: null,
+                to: null,
+                description:"",
+                [name]: value
+                
+              })
+          })
+         
+          }
+
         break;
 
         default:
           console.log("default")
       }
-
-      
     }
-    checkForId();
+    
+    CheckForId();
 
   }
+
+  // let teste = {A:2,B:3}
+  // console.log(teste[Object.keys(teste)[Object.keys(teste).indexOf("A")]] = 5)
+  // console.log(teste)
 
   onFormSubmit = (e) => {
 
@@ -142,9 +164,22 @@ class App extends Component {
       case "addProf":
 
         this.setState({ 
-          addProf: this.state.addProf.concat(value)
+          addProf: this.state.addProf.concat(value),
+          profExp: {
+            id: value.props.id,
+            company:"",
+            title:"",
+            from: null,
+            to: null,
+            description:""
+          },
+          profExpArr: this.state.profExpArr.concat({id: value.props.id,
+            company:"",
+            title:"",
+            from: null,
+            to: null,
+            description:""})
         })
-
         break;
       
       default:
@@ -176,28 +211,6 @@ class App extends Component {
           <p></p>
   </div>
 
-  // professionalExp =           <div>
-  //   <input type="text" placeholder="Company's Name"></input>
-  //   <input type="text" placeholder='Title'></input>
-  //   <input type="number" placeholder='From'></input>
-  //   <input type="number" placeholder='To'></input>
-  //   <input type="text" placeholder='Duties'></input> </div>
-
-  // professionalExpContainer = <div className="formDiv">
-  //         {this.professionalExp}
-  //         <button>Add</button>
-  //         <p></p>
-  // </div>
-  
-    
-
-  
-  // skillsContainer = <div className="formDiv">
-  //         <div><input type="text" placeholder="5 most relevant skills"></input> </div>
-  // </div>
-
-// skills = [<Skills />]
-
   render() {
     const { addSkill, addProf } = this.state
     return (
@@ -211,6 +224,8 @@ class App extends Component {
           {addProf}
           <button className="addProf" onClick={(e) => this.addButton("addProf",<ProfessionalExp input={this.handleChange} id={uniqid()}/>, e)}>Add</button>
           {console.log(this.state.profExpArr)}
+          {console.log(this.state.profExp)}
+
         <label>Skills</label>
          {addSkill}
          <button className="addSkills" onClick={(e) => this.addButton("addSkills", <Skills input={this.handleChange} id={uniqid()}/>, e)}>Add</button>
