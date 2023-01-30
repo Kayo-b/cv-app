@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { PersonalInfo } from './components/PersonalInfo';
 import { Education } from './components/Education';
 import { ProfessionalExp } from './components/ProfessionalExp';
+import { ProfPreview } from './components/ProfPreview';
 import { Skills } from './components/Skills';
+import { SkillsPreview } from './components/SkillsPreview';
 import "./styles/App.css";
 import uniqid from 'uniqid';
 import { useState } from 'react';
@@ -20,7 +22,10 @@ class App extends Component {
           input:"",
           id:  this.firstId.id
         },
-        skillsArr: [],
+        skillsArr: [{
+          input:"",
+          id:  this.firstId.id
+        }],
 
         addProf:[<ProfessionalExp input={this.handleChange} id={this.firstId.id}/>],
         profExp: {
@@ -51,6 +56,10 @@ class App extends Component {
           let temp = this.state.skillsArr;
           temp[index].input = e.target.value;
           this.setState( {
+            skill: {
+              input: e.target.value,
+              
+            },
             skillsArr: temp
           })
           ret = true
@@ -69,7 +78,7 @@ class App extends Component {
             id: e.target.id 
           })
       })
-      console.log(this.state.skill.input)
+      // console.log(this.state.skill.input)
       }
       break;
 
@@ -224,16 +233,25 @@ class App extends Component {
           {addProf}
           <button className="addProf" onClick={(e) => this.addButton("addProf",<ProfessionalExp input={this.handleChange} id={uniqid()}/>, e)}>Add</button>
           {console.log(this.state.profExpArr)}
-          {console.log(this.state.profExp)}
 
         <label>Skills</label>
          {addSkill}
          <button className="addSkills" onClick={(e) => this.addButton("addSkills", <Skills input={this.handleChange} id={uniqid()}/>, e)}>Add</button>
          {console.log(this.state.skillsArr)}
+         {console.log(this.state.input)}
           
           
         </form>
+
+        <div className="preview">
+          <label>Professional Experience</label><br></br>
+          {this.state.profExpArr.map(item => {return <ProfPreview input={item}/>})}
+          <label>Skills</label>
+          {this.state.skillsArr.map(item => {return <SkillsPreview input={item.input}/>})}
+        </div>
+        
       </div>
+      
     );
   }
 

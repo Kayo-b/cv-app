@@ -4,6 +4,8 @@
 
 .App {
     text-align: left;
+    display: grid;
+    grid-auto-flow: column;
 
 }
 
@@ -17,4 +19,9 @@
 input {
     margin: 2px;
     font-size: large;
+}
+
+.preview {
+    border: 1px solid red;
+    padding: 15px;
 }
