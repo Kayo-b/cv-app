@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { PersonalInfo } from './components/PersonalInfo';
+import { PersonalData } from './components/PersonalData';
+import { PersonalPreview } from './components/PersonalPreview';
 import { Education } from './components/Education';
+import { EducPreview } from './components/EducPreview';
 import { ProfessionalExp } from './components/ProfessionalExp';
 import { ProfPreview } from './components/ProfPreview';
 import { Skills } from './components/Skills';
@@ -16,7 +18,7 @@ class App extends Component {
     super();
     this.firstId = {id: uniqid()}
     this.state = {
-
+//---Skill States---//
         addSkill: [<Skills input={this.handleChange} id={this.firstId.id}/>],
         skill: {
           input:"",
@@ -26,8 +28,8 @@ class App extends Component {
           input:"",
           id:  this.firstId.id
         }],
-
-        addProf:[<ProfessionalExp input={this.handleChange} id={this.firstId.id}/>],
+//---Professional Experience States---//
+        addProf: [<ProfessionalExp input={this.handleChange} id={this.firstId.id}/>],
         profExp: {
           id: this.firstId.id,
           company:"",
@@ -36,7 +38,38 @@ class App extends Component {
           to: null,
           description:""
         },
-        profExpArr: []
+        profExpArr: [],
+//---Educational History States---//
+        addEduc: [<Education input={this.handleChange} id={this.firstId.id}/>],
+        educHist: {
+          id: this.firstId.id,
+          title:"",
+          institution:"",
+          from: null,
+          to: null,
+          description:""
+        },
+        educHistArr: [],
+//---Personal Info States---//
+        addPersonalData: [<Education input={this.handleChange} id={this.firstId.id}/>],
+        personalData: {
+          id: this.firstId.id,
+          name:"",
+          title:"",
+          number:"",
+          email:"",
+          location:"",
+          description:"",
+        },
+        personalDataArr: {
+          id: this.firstId.id,
+          name:"",
+          title:"",
+          number:"",
+          email:"",
+          location:"",
+          description:"",
+        }
         
     }
   }
@@ -133,6 +166,81 @@ class App extends Component {
 
         break;
 
+        case "educHist":
+
+        this.state.educHistArr.map(item => {
+          if(item.id === e.target.id) {
+            
+            let index = this.state.educHistArr.indexOf(item)
+            let temp = this.state.educHistArr[index]
+            temp[e.target.name] = e.target.value
+            let substituteArr = this.state.educHistArr
+            substituteArr.splice(index, 1, temp)
+            
+            this.setState( {
+              educHist: temp,
+              educHistArr: substituteArr
+          })
+         
+            ret = true
+          } 
+        })
+        
+        if(ret === false) {
+          const { name, value } = e.target
+            this.setState( {
+            
+              educHist: {
+                id: e.target.id,
+                institution:"",
+                title:"",
+                from: null,
+                to: null,
+                description:"",
+                [name]: value
+              },
+
+              educHistArr: this.state.educHistArr.concat( {
+                
+                id: e.target.id,
+                institution:"",
+                title:"",
+                from: null,
+                to: null,
+                description:"",
+                [name]: value
+                
+              })
+          })
+         
+          }
+
+        break;
+
+        case "personalData":
+          const { name, value } = e.target
+          let newStateObj = this.state.personalDataArr
+          newStateObj[name] = value
+            this.setState( {
+            
+              personalData: newStateObj,
+
+              personalDataArr:  newStateObj
+                
+                // id: e.target.id,
+                // name:"",
+                // title:"",
+                // number:"",
+                // email:"",
+                // location:"",
+                // description:"",
+                // [name]: value
+                
+            
+          })
+
+          break;
+
         default:
           console.log("default")
       }
@@ -182,12 +290,36 @@ class App extends Component {
             to: null,
             description:""
           },
-          profExpArr: this.state.profExpArr.concat({id: value.props.id,
+          profExpArr: this.state.profExpArr.concat({
+            id: value.props.id,
             company:"",
             title:"",
             from: null,
             to: null,
             description:""})
+        })
+        break;
+
+        case "addEduc":
+
+        this.setState({ 
+          addEduc: this.state.addEduc.concat(value),
+          educHist: {
+            id: this.firstId.id,
+            title:"",
+            institution:"",
+            from: null,
+            to: null,
+            description:""
+          },
+          educHistArr: this.state.educHistArr.concat({
+            id: this.firstId.id,
+            title:"",
+            institution:"",
+            from: null,
+            to: null,
+            description:""
+          })
         })
         break;
       
@@ -200,35 +332,38 @@ class App extends Component {
 
   }
 
-  personalData = <div className="formDiv">
-            <input type="text" placeholder='Name'></input>
-            <input type="text" placeholder='Title'></input>
-            <input type="number" placeholder='Phone Number'></input>
-            <input type="email" placeholder='E-Mail'></input>
-            <input type="text" placeholder='Location'></input>
-            <input type="text" placeholder='Introduction...'></input>
-            <p></p>
-  </div>
+  // personalData = <div className="formDiv">
+  //           <input type="text" placeholder='Name'></input>
+  //           <input type="text" placeholder='Title'></input>
+  //           <input type="number" placeholder='Phone Number'></input>
+  //           <input type="email" placeholder='E-Mail'></input>
+  //           <input type="text" placeholder='Location'></input>
+  //           <input type="text" placeholder='Introduction...'></input>
+  //           <p></p>
+  // </div>
 
-  education = <div className="formDiv">
-          <input type="text" placeholder='Title'></input>
-          <input type="text" placeholder='Institution/Organization'></input>
-          <input type="number" placeholder='From'></input>
-          <input type="number" placeholder='To'></input>
-          <input type="text" placeholder='Description'></input>
-          <button>Add</button>
-          <p></p>
-  </div>
+  // education = <div className="formDiv">
+  //         <input type="text" placeholder='Title'></input>
+  //         <input type="text" placeholder='Institution/Organization'></input>
+  //         <input type="number" placeholder='From'></input>
+  //         <input type="number" placeholder='To'></input>
+  //         <input type="text" placeholder='Description'></input>
+  //         <button>Add</button>
+  //         <p></p>
+  // </div>
 
   render() {
-    const { addSkill, addProf } = this.state
+    const { addSkill, addProf, addEduc, personalDataArr } = this.state
     return (
       <div className="App">
         <form className="cvForm">
         <label>Personal Data</label>
-          {this.personalData}
+          {<PersonalData input={this.handleChange} id={uniqid()}/>}
+          {console.log(this.state.personalDataArr)}
         <label>Education</label>
-          {this.education}
+          {addEduc}
+          <button className="addEduc" onClick={(e) => this.addButton("addEduc",<Education input={this.handleChange} id={uniqid()}/>, e)}>Add</button>
+          {console.log(this.state.educHistArr)}
         <label>Professional Experience</label>
           {addProf}
           <button className="addProf" onClick={(e) => this.addButton("addProf",<ProfessionalExp input={this.handleChange} id={uniqid()}/>, e)}>Add</button>
@@ -244,6 +379,10 @@ class App extends Component {
         </form>
 
         <div className="preview">
+          <label>Personal Data</label><br></br>
+          <PersonalPreview input={personalDataArr}/>
+          <label>Educational History</label><br></br>
+          {this.state.educHistArr.map(item => {return <EducPreview input={item}/>})}
           <label>Professional Experience</label><br></br>
           {this.state.profExpArr.map(item => {return <ProfPreview input={item}/>})}
           <label>Skills</label>
