@@ -1,0 +1,19 @@
+#profContainer {
+    border: 1px solid red;
+    margin: auto;
+
+}
+
+#profile {
+    align-items: center;
+    word-wrap: break-word;
+    border: 1px solid blue;;
+}
+
+h3 {
+    text-align: center;
+}
+
+#profDates {
+    display: flex;
+}

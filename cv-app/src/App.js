@@ -222,25 +222,14 @@ class App extends Component {
           let newStateObj = this.state.personalDataArr
           newStateObj[name] = value
             this.setState( {
-            
+
               personalData: newStateObj,
 
               personalDataArr:  newStateObj
-                
-                // id: e.target.id,
-                // name:"",
-                // title:"",
-                // number:"",
-                // email:"",
-                // location:"",
-                // description:"",
-                // [name]: value
-                
-            
+
           })
 
           break;
-
         default:
           console.log("default")
       }
@@ -250,9 +239,6 @@ class App extends Component {
 
   }
 
-  // let teste = {A:2,B:3}
-  // console.log(teste[Object.keys(teste)[Object.keys(teste).indexOf("A")]] = 5)
-  // console.log(teste)
 
   onFormSubmit = (e) => {
 
@@ -296,7 +282,8 @@ class App extends Component {
             title:"",
             from: null,
             to: null,
-            description:""})
+            description:""
+          })
         })
         break;
 
@@ -305,7 +292,7 @@ class App extends Component {
         this.setState({ 
           addEduc: this.state.addEduc.concat(value),
           educHist: {
-            id: this.firstId.id,
+            id: value.props.id,
             title:"",
             institution:"",
             from: null,
@@ -313,7 +300,7 @@ class App extends Component {
             description:""
           },
           educHistArr: this.state.educHistArr.concat({
-            id: this.firstId.id,
+            id: value.props.id,
             title:"",
             institution:"",
             from: null,
@@ -332,63 +319,63 @@ class App extends Component {
 
   }
 
-  // personalData = <div className="formDiv">
-  //           <input type="text" placeholder='Name'></input>
-  //           <input type="text" placeholder='Title'></input>
-  //           <input type="number" placeholder='Phone Number'></input>
-  //           <input type="email" placeholder='E-Mail'></input>
-  //           <input type="text" placeholder='Location'></input>
-  //           <input type="text" placeholder='Introduction...'></input>
-  //           <p></p>
-  // </div>
-
-  // education = <div className="formDiv">
-  //         <input type="text" placeholder='Title'></input>
-  //         <input type="text" placeholder='Institution/Organization'></input>
-  //         <input type="number" placeholder='From'></input>
-  //         <input type="number" placeholder='To'></input>
-  //         <input type="text" placeholder='Description'></input>
-  //         <button>Add</button>
-  //         <p></p>
-  // </div>
-
   render() {
     const { addSkill, addProf, addEduc, personalDataArr } = this.state
     return (
       <div className="App">
         <form className="cvForm">
-        <label>Personal Data</label>
+        <div className="inputBlocks">
+          <h3>Personal Data</h3>
           {<PersonalData input={this.handleChange} id={uniqid()}/>}
           {console.log(this.state.personalDataArr)}
-        <label>Education</label>
+        </div>
+        <div className="inputBlocks">
+          <h3>Education</h3>
           {addEduc}
-          <button className="addEduc" onClick={(e) => this.addButton("addEduc",<Education input={this.handleChange} id={uniqid()}/>, e)}>Add</button>
+          <button className="addEduc" onClick={(e) => this.addButton("addEduc",<Education input={this.handleChange} id={uniqid()}/>, e)}><span>Add</span></button>
           {console.log(this.state.educHistArr)}
-        <label>Professional Experience</label>
+        </div>
+        <div className="inputBlocks">
+          <h3>Professional Experience</h3>
           {addProf}
-          <button className="addProf" onClick={(e) => this.addButton("addProf",<ProfessionalExp input={this.handleChange} id={uniqid()}/>, e)}>Add</button>
+          <button className="addProf" onClick={(e) => this.addButton("addProf",<ProfessionalExp input={this.handleChange} id={uniqid()}/>, e)}><span>Add</span></button>
           {console.log(this.state.profExpArr)}
-
-        <label>Skills</label>
-         {addSkill}
-         <button className="addSkills" onClick={(e) => this.addButton("addSkills", <Skills input={this.handleChange} id={uniqid()}/>, e)}>Add</button>
-         {console.log(this.state.skillsArr)}
-         {console.log(this.state.input)}
-          
-          
-        </form>
-
-        <div className="preview">
-          <label>Personal Data</label><br></br>
-          <PersonalPreview input={personalDataArr}/>
-          <label>Educational History</label><br></br>
-          {this.state.educHistArr.map(item => {return <EducPreview input={item}/>})}
-          <label>Professional Experience</label><br></br>
-          {this.state.profExpArr.map(item => {return <ProfPreview input={item}/>})}
-          <label>Skills</label>
-          {this.state.skillsArr.map(item => {return <SkillsPreview input={item.input}/>})}
+        </div>
+        <div className="inputBlocksX">
+          <h3>Skills</h3>
+          {addSkill}
+          <button className="addSkills" onClick={(e) => this.addButton("addSkills", <Skills input={this.handleChange} id={uniqid()}/>, e)}><span>Add</span></button>
+          {console.log(this.state.skillsArr)}
+          {console.log(this.state.input)} 
         </div>
         
+         
+          
+          
+      </form>
+
+        <div className="preview">
+            <PersonalPreview input={personalDataArr}/>
+          <div  id="prevBody">
+            <div  id="prevSideBar">
+              <h3 className="sideBar">Education</h3>
+              <EducPreview emptyInput={this.state.educHistArr}/>
+              {this.state.educHistArr.map(item => {return <EducPreview input={item}/>})}
+              <h3 className="sideBar">Skills</h3>
+              {this.state.skillsArr.map(item => {return <SkillsPreview input={item.input}/>})}
+            </div>
+            <div id="profileExpContainer"> 
+              <div id="mainProfContainer">
+                <h3 className="bodyTitle">Profile</h3>
+                {<ProfPreview profile={personalDataArr.description}/>}
+              </div>
+              <div id="mainExpContainer">
+                <h3 className="bodyTitle">Experience</h3>
+                {this.state.profExpArr.map(item => {return <ProfPreview input={item} />})}     
+              </div>
+            </div>
+          </div>
+        </div>    
       </div>
       
     );

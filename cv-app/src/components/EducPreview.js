@@ -1,11 +1,23 @@
 import React, { Component } from 'react';
+import "../styles/EducPreviewStyle.css"
 
 export class EducPreview extends Component {
     render() {
-        return <div>        <li>Institution: {this.props.input.institution}</li>
-        <li>Title: {this.props.input.title}</li>
-        <li>From: {this.props.input.from}</li>
-        <li>To: {this.props.input.to}</li>
-        <li>Description: {this.props.input.description}</li></div>
+        if(this.props.input) {
+            return <div id="educContainer">        
+            <div>{this.props.input.title}</div>
+            <div>{this.props.input.institution}</div>
+            <div id="dates">{this.props.input.from} {this.props.input.to}</div>
+            </div>
+        }
+        if(this.props.emptyInput) {
+            return <div id="educContainer">        
+            <div>{this.props.emptyInput.title}</div>
+            <div>{this.props.emptyInput.institution}</div>
+            <div id="dates">{this.props.emptyInput.from} {this.props.emptyInput.to}</div>
+            </div>
+        }
+        return
+
     }
 }

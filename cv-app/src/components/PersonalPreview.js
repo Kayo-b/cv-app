@@ -1,14 +1,25 @@
 import React, { Component } from 'react';
+import "../styles/PersonalPreviewStyle.css"
 
 export class PersonalPreview extends Component {
     render() {
-        return <div>
-        <li>Name: {this.props.input.name}</li>
-        <li>Title: {this.props.input.title}</li>
-        <li>Phone Number: {this.props.input.number}</li>
-        <li>E-Mail: {this.props.input.email}</li>
-        <li>Location: {this.props.input.location}</li>
-        <li>Introduction: {this.props.input.description}</li>
+        return  <div id="mainPersonalContainer">        
+        
+        <div id="personalInfoHeader">
+        <div id="mainHeader">
+            <div id="ppName">{this.props.input.name}</div>
+            <div id="ppTitle">{this.props.input.title}</div>
         </div>
+        <div id="sideHeader">
+            <div id="ppPhone">Phone Number: {this.props.input.number}</div>
+            <div id="ppEmail">E-Mail: {this.props.input.email}</div>
+            <div id="ppLocation">Location: {this.props.input.location}</div>
+            <div id="ppSocial">Social: {this.props.input.social}</div>
+            <div id="ppGit">GitHub: {this.props.input.github}</div>    
+        </div>
+        </div>
+        </div>
+        
+        
     }
 }

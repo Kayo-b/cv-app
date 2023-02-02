@@ -1,0 +1,25 @@
+#ppName {
+    font-size: xx-large; 
+}
+
+#personalInfoHeader {
+    border: 1px solid red;
+    display: flex;
+}
+#mainHeader {
+    width: 80%;
+}
+
+#mainPersonalContainer {
+    border: 1px solid green; 
+    
+}
+
+#ppIntro {
+    margin: auto;
+    margin-right:4px;
+    margin-bottom:3px;
+    border: 1px solid yellow;
+    word-wrap:break-word;
+    width:80%;
+}

@@ -1,0 +1,10 @@
+#educContainer {
+    font-size: small;
+    
+    margin-bottom: 10px;
+
+}
+
+#dates {
+    display: flex;
+}

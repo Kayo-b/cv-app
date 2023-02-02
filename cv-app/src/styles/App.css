@@ -2,19 +2,150 @@
     margin: 3px;
 }
 
+@font-face {
+    font-family: customUbuntu;
+    src: url(/src/fonts/UbuntuCondensed-Regular.ttf);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"], input[type="date"] {
+  -moz-appearance: textfield;
+}
+input[type="date"] {
+    -moz-appearance: textfield;
+  }
+
+body {
+    background:#343434
+}
+
+input {
+    background-color: rgb(78, 78, 78);
+    color: rgb(221, 221, 221);
+    border: 0px;
+    max-width: 600px;
+    min-width: 300px;
+    height: 20px;
+
+}
+
+.bodyTitle {
+    color: rgb(221, 221, 221);
+    max-width: 600px;
+    min-width: 300px;
+    display: flex;
+    align-items: left;
+
+}
+
+.sideBar {
+    color: rgb(221, 221, 221);
+    display: flex;
+    align-items: left;
+
+}
+textarea {
+    max-width: 400px;
+    min-width: 300px;
+    max-height: 250px;
+    min-height: 80px;
+    border: none;
+    margin-top: 2px;
+
+    color: rgb(221, 221, 221);
+    background-color: rgb(78, 78, 78);
+}
+
+/* button {
+    border: 1px solid black;
+    border-radius: 3px;
+    width: 60px;
+    content: "Add";
+} */
+
+button {
+   border-radius: 3px;
+   background-color: #3f3f3f;
+   border: none;
+   color: #FFFFFF;
+   text-align: center;
+   font-size: 13px;
+   padding: 2px;
+   width: 40px;
+   transition: all 0.5s;
+   cursor: pointer;
+   margin: 3px;
+ }
+ 
+button span {
+   cursor: pointer;
+   display: inline-block;
+   position: relative;
+   transition: 0.5s;
+ }
+ 
+button span:after {
+   content: '✚';
+   position: absolute;
+   opacity: 0;
+   top: 0;
+   right: -5px;
+   transition: 0.5s;
+ }
+  
+button:hover span {
+    padding-right: 15px;
+  }
+button:hover {
+    width: 50px;
+}
+  
+button:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+ 
 .App {
     text-align: left;
     display: grid;
     grid-auto-flow: column;
-
+    font-family: customUbuntu;
+ 
 }
 
-.cvForm, .formDiv {
+.cvForm, .formDiv, .subDiv{
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
     width: 50%;
+    margin: 0px;
+    
 }
+
+.inputBlocks {
+    border-bottom: 2px solid rgb(78, 78, 78);
+    padding-bottom: 5px;
+    min-width: 310px;
+    margin: 0px;
+    max-width: 300px;
+    min-width: 300px;
+    
+}
+
+.inputBlocksX {
+    max-width: 300px;
+    min-width: 300px;
+    padding-bottom: 5px;
+    min-width: 310px;
+    margin: 0px;
+    
+}
+
 
 input {
     margin: 2px;
@@ -22,6 +153,34 @@ input {
 }
 
 .preview {
-    border: 1px solid red;
-    padding: 15px;
+    
+    width: 21cm;
+    min-height: 29.7cm;
+    padding: 2cm;
+    margin: 10px;
+    margin-right: 10px;
+    border: 1px #D3D3D3 solid;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+#profileExpContainer {
+    border: 1px solid purple;
+    margin: auto;
+    max-width: 79%;
+    min-width: 79%;
+}
+
+#prevBody {
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+    border: 1px solid yellow;
+}
+
+#prevSideBar {
+    min-width:19%;
+    max-width:19%;
+    word-wrap: break-word;
 }
