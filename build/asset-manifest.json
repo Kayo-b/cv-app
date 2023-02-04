@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/cv-app/static/css/main.a0605464.css",
+    "main.js": "/cv-app/static/js/main.8f44f232.js",
+    "static/media/UbuntuCondensed-Regular.ttf": "/cv-app/static/media/UbuntuCondensed-Regular.e86cedebf88316c748cf.ttf",
+    "static/media/Abel-Regular.ttf": "/cv-app/static/media/Abel-Regular.3843f456cf56d275baf6.ttf",
+    "static/media/github-repo-git-octocat-svgrepo-com.svg": "/cv-app/static/media/github-repo-git-octocat-svgrepo-com.da50817e7bf5eda2f5cb.svg",
+    "static/media/mail-svgrepo-com.svg": "/cv-app/static/media/mail-svgrepo-com.b67c4783d822c8f7edcd.svg",
+    "static/media/linkedin-svgrepo-com.svg": "/cv-app/static/media/linkedin-svgrepo-com.3555f1c318b013e83968.svg",
+    "index.html": "/cv-app/index.html",
+    "static/media/location-svgrepo-com.svg": "/cv-app/static/media/location-svgrepo-com.f2670f279b737036d6b9.svg",
+    "static/media/telephone-svgrepo-com.svg": "/cv-app/static/media/telephone-svgrepo-com.942f64b877ac0fb94764.svg",
+    "main.a0605464.css.map": "/cv-app/static/css/main.a0605464.css.map",
+    "main.8f44f232.js.map": "/cv-app/static/js/main.8f44f232.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a0605464.css",
+    "static/js/main.8f44f232.js"
+  ]
+}
