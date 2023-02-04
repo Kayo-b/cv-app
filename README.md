@@ -15,4 +15,4 @@
  #### Technical notes about project development:
  This was my first project using React, the usage of class components insted of function components was deliberate with the purpose of learning how to use and read class components. This code base will be forked and refactored using functional components in the future.
 
- !(file:///home/kayo-b/Downloads/cvrec.gif)
+ ![cv](/cv-app/gif/cvrec.gif)
