@@ -11,11 +11,11 @@ export class PersonalPreview extends Component {
             <div id="ppTitle">{this.props.input.title}</div>
         </div>
         <div id="sideHeader">
-            <div id="ppPhone">Phone Number: {this.props.input.number}</div>
-            <div id="ppEmail">E-Mail: {this.props.input.email}</div>
-            <div id="ppLocation">Location: {this.props.input.location}</div>
-            <div id="ppSocial">Social: {this.props.input.social}</div>
-            <div id="ppGit">GitHub: {this.props.input.github}</div>    
+            <div id="ppPhone">{this.props.input.number}<div id="telIcon"></div></div>
+            <div id="ppEmail">{this.props.input.email}<div id="mailIcon"></div></div>
+            <div id="ppLocation">{this.props.input.location}<div id="locationIcon"></div></div>
+            <div id="ppSocial">{this.props.input.social}<div id="socialIcon"></div></div>
+            <div id="ppGit">{this.props.input.github}<div id="gitIcon"></div></div>    
         </div>
         </div>
         </div>

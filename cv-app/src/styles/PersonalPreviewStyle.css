@@ -3,15 +3,30 @@
 }
 
 #personalInfoHeader {
-    border: 1px solid red;
+
     display: flex;
+    margin: 0px;
+    border-bottom: 1px solid rgb(183, 183, 183);
+    margin-bottom: 10px;
+    padding-bottom: 10px;
 }
 #mainHeader {
     width: 80%;
+    margin: 0px;
+
+}
+
+#sideHeader {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-right: 0px;
+    align-items: flex-end;
+
 }
 
 #mainPersonalContainer {
-    border: 1px solid green; 
+    margin: 0px;
     
 }
 
@@ -19,7 +34,76 @@
     margin: auto;
     margin-right:4px;
     margin-bottom:3px;
-    border: 1px solid yellow;
     word-wrap:break-word;
     width:80%;
+}
+
+#telIcon {
+    background: url(/src/svg/telephone-svgrepo-com.svg) 0 0 no-repeat;;
+    background-size: 19px 19px;
+    width: 20px;
+    height: 20px;
+    display: block;
+    margin: auto;
+    margin-right: 0px;
+    margin-left: 3px;
+}
+
+#mailIcon {
+    background: url(/src/svg/mail-svgrepo-com.svg) 0 0 no-repeat;;
+    background-size: 19px 19px;
+    width: 20px;
+    height: 20px;
+    display: block;
+    margin: auto;
+    margin-right: 0px;
+    margin-left: 5px;
+}
+
+#locationIcon {
+    background: url(/src/svg/location-svgrepo-com.svg) 0 0 no-repeat;;
+    background-size: 19px 19px;
+    width: 20px;
+    height: 20px;
+    display: block;
+    margin: auto;
+    margin-right: 0px;
+    scale: 120%;
+    margin-left: 3px;
+}
+
+#socialIcon {
+    background: url(/src/svg/linkedin-svgrepo-com.svg) 0 0 no-repeat;;
+    background-size: 19px 19px;
+    width: 20px;
+    height: 20px;
+    display: block;
+    margin: auto;
+    margin-right: 0px;
+    scale: 90%;
+    margin-left: 5px;
+}
+
+#gitIcon {
+    background: url(/src/svg/github-repo-git-octocat-svgrepo-com.svg) 0 0 no-repeat;;
+    background-size: 19px 19px;
+    width: 20px;
+    height: 20px;
+    display: block;
+    margin: auto;
+    margin-right: 0px;
+    scale: 120%;
+    margin-left: 5px;
+}
+
+#ppPhone, #ppEmail, #ppLocation, #ppSocial, #ppGit {
+    display: flex;
+}
+
+#ppTitle {
+    margin-top: 0px;
+}
+
+#ppName {
+    margin-bottom: 0px;
 }

@@ -1,13 +1,17 @@
 #profContainer {
-    border: 1px solid red;
     margin: auto;
+    word-wrap: break-word;
+    margin-top: 10px;
+    
 
 }
 
 #profile {
     align-items: center;
     word-wrap: break-word;
-    border: 1px solid blue;;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(198, 198, 198);
+    margin-bottom: rgb(221, 221, 221);
 }
 
 h3 {
@@ -16,4 +20,22 @@ h3 {
 
 #profDates {
     display: flex;
+    margin:0px;
+    font-size: 80%;
+}
+
+#companyName {
+    font-size: 110%;
+}
+#jobTitle {
+    font-size: 90%;
+}
+
+#profDescription {
+    font-size: 90%;
+    white-space: pre-wrap;
+}
+
+#mainExpContainer {
+    margin-top: 10px;
 }

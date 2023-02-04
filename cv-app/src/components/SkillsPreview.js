@@ -6,6 +6,6 @@ export class SkillsPreview extends Component {
 
     render() {
 
-        return <div>{this.props.input}</div>
+        return <div id="skillsPreview">{this.props.input}</div>
     }
 }

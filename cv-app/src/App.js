@@ -59,16 +59,20 @@ class App extends Component {
           number:"",
           email:"",
           location:"",
-          description:"",
+          social: "",
+          github: "",
+          description:""
         },
         personalDataArr: {
           id: this.firstId.id,
-          name:"",
-          title:"",
-          number:"",
-          email:"",
-          location:"",
-          description:"",
+          name:"John Pastrami",
+          title:"Software Engineer",
+          number:"45 112 34109931",
+          email:"jpastrami@mail.com",
+          location:"Berlin",
+          social: "linkedin.com/johnpasta",
+          github: "jp-strami.github.io",
+          description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         }
         
     }
@@ -99,7 +103,6 @@ class App extends Component {
         } 
       })
       if(ret === false) {
-        console.log(e.target.value)
         this.setState({ 
           skill: {
             input: e.target.value,
@@ -111,7 +114,6 @@ class App extends Component {
             id: e.target.id 
           })
       })
-      // console.log(this.state.skill.input)
       }
       break;
 
@@ -230,6 +232,7 @@ class App extends Component {
           })
 
           break;
+
         default:
           console.log("default")
       }
@@ -327,32 +330,29 @@ class App extends Component {
         <div className="inputBlocks">
           <h3>Personal Data</h3>
           {<PersonalData input={this.handleChange} id={uniqid()}/>}
-          {console.log(this.state.personalDataArr)}
         </div>
         <div className="inputBlocks">
           <h3>Education</h3>
           {addEduc}
           <button className="addEduc" onClick={(e) => this.addButton("addEduc",<Education input={this.handleChange} id={uniqid()}/>, e)}><span>Add</span></button>
-          {console.log(this.state.educHistArr)}
         </div>
         <div className="inputBlocks">
           <h3>Professional Experience</h3>
           {addProf}
           <button className="addProf" onClick={(e) => this.addButton("addProf",<ProfessionalExp input={this.handleChange} id={uniqid()}/>, e)}><span>Add</span></button>
-          {console.log(this.state.profExpArr)}
         </div>
         <div className="inputBlocksX">
           <h3>Skills</h3>
           {addSkill}
           <button className="addSkills" onClick={(e) => this.addButton("addSkills", <Skills input={this.handleChange} id={uniqid()}/>, e)}><span>Add</span></button>
-          {console.log(this.state.skillsArr)}
-          {console.log(this.state.input)} 
         </div>
         
          
           
           
       </form>
+      
+{/* --------- CV Preview Element ---------- */}
 
         <div className="preview">
             <PersonalPreview input={personalDataArr}/>
@@ -361,7 +361,7 @@ class App extends Component {
               <h3 className="sideBar">Education</h3>
               <EducPreview emptyInput={this.state.educHistArr}/>
               {this.state.educHistArr.map(item => {return <EducPreview input={item}/>})}
-              <h3 className="sideBar">Skills</h3>
+              <h3 className="sideBarSkills">Skills</h3>
               {this.state.skillsArr.map(item => {return <SkillsPreview input={item.input}/>})}
             </div>
             <div id="profileExpContainer"> 
@@ -371,7 +371,7 @@ class App extends Component {
               </div>
               <div id="mainExpContainer">
                 <h3 className="bodyTitle">Experience</h3>
-                {this.state.profExpArr.map(item => {return <ProfPreview input={item} />})}     
+                {this.state.profExpArr.map(item => {return <ProfPreview input={item}/>})}     
               </div>
             </div>
           </div>
