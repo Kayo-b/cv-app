@@ -17,4 +17,4 @@
 
 https://kayo-b.github.io/cv-app/
  
- ![cv](/cv-app/gif/cvrec.gif)
+ ![cv](/gif/cvrec.gif)
