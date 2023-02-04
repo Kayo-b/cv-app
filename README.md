@@ -15,6 +15,6 @@
  #### Technical notes about project development:
  This is my first project using React, the usage of class components instead of function components was deliberate with the purpose of learning how to use and read class components. This code base will be forked and refactored using functional components in the future.
 
- kayo-b.github.io/cv-app/
+https://kayo-b.github.io/cv-app/
  
  ![cv](/cv-app/gif/cvrec.gif)
